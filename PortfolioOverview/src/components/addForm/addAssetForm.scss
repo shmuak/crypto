@@ -1,0 +1,263 @@
+@use "../../styles/variables.scss" as *;
+
+.asset-table {
+  min-width: 800px;
+  max-width: 90%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: $font-family-sans-serif;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+
+  &__wrapper {
+    overflow-x: auto;
+    border-radius: 10px;
+    background: white;
+    padding: $spacing-unit;
+    margin: 0 auto;
+    width: fit-content;
+    max-width: 95vw;
+  }
+
+  thead {
+    background-color: $primary-color;
+    color: white;
+
+    th {
+      padding: $spacing-unit * 1.5;
+      text-align: left;
+      font-weight: 600;
+
+      &:first-child {
+        border-top-left-radius: 10px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 10px;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color 0.2s ease;
+
+      &:nth-child(even) {
+        background-color: rgba($primary-color, 0.03);
+      }
+
+      &:hover {
+        background-color: rgba($primary-color, 0.08);
+      }
+
+      &:last-child {
+        td {
+          &:first-child {
+            border-bottom-left-radius: 10px;
+          }
+
+          &:last-child {
+            border-bottom-right-radius: 10px;
+          }
+        }
+      }
+    }
+
+    td {
+      padding: $spacing-unit * 1.5;
+      border-bottom: 1px solid $border-color;
+    }
+  }
+
+  &__positive {
+    color: $positive-color;
+    font-weight: 500;
+  }
+
+  &__negative {
+    color: $negative-color;
+    font-weight: 500;
+  }
+
+  &__neutral {
+    color: $neutral-color;
+  }
+
+  &__amount {
+    font-family: $font-family-monospace;
+    text-align: right;
+  }
+
+  &__loading,
+  &__empty {
+    display: flex;
+    justify-content: center;
+    padding: $spacing-unit * 4;
+    color: $neutral-color;
+  }
+}
+
+.add-asset-form {
+  font-family: $font-family-sans-serif;
+  color: $neutral-color;
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal-container {
+    background-color: white;
+    border-radius: $spacing-unit * 3;
+    width: 320px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+
+  .modal-header {
+    padding: $spacing-unit * 2 $spacing-unit * 3;
+
+    h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 0;
+      color: darken($neutral-color, 20%);
+    }
+  }
+
+  .search-container {
+    padding: $spacing-unit * 2 $spacing-unit * 3;
+    border-bottom: 1px solid lighten($border-color, 5%);
+
+    input {
+      width: 90%;
+      padding: $spacing-unit * 1.5;
+      border: 1px solid $border-color;
+      border-radius: $spacing-unit;
+      font-size: $font-size-base;
+      outline: none;
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 1px $primary-color;
+      }
+    }
+  }
+
+  .crypto-list {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 50vh;
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: $spacing-unit * 6 0;
+    }
+
+    .crypto-item {
+      padding: $spacing-unit * 2 $spacing-unit * 3;
+      cursor: pointer;
+      border-bottom: 1px solid lighten($border-color, 8%);
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: lighten($border-color, 12%);
+      }
+
+      &.selected {
+        background-color: rgba($primary-color, 0.05);
+      }
+
+      .crypto-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .crypto-name {
+          font-weight: 500;
+          margin-bottom: $spacing-unit * 0.5;
+        }
+
+        .crypto-symbol {
+          font-size: 0.8125rem;
+          color: lighten($neutral-color, 15%);
+        }
+
+        .crypto-price {
+          font-weight: 500;
+          text-align: right;
+        }
+
+        .crypto-change {
+          font-size: 0.8125rem;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .form-container {
+    padding: $spacing-unit * 2 $spacing-unit * 3;
+    border-top: 1px solid lighten($border-color, 5%);
+    background-color: white;
+
+    label {
+      display: block;
+      margin-bottom: $spacing-unit;
+      color: darken($neutral-color, 15%);
+    }
+
+    input {
+      width: 90%;
+      padding: $spacing-unit * 1.5;
+      border: 1px solid $border-color;
+      border-radius: $spacing-unit;
+      font-size: $font-size-base;
+      margin-bottom: $spacing-unit * 2;
+      outline: none;
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 1px $primary-color;
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: $spacing-unit * 2;
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      border-radius: $spacing-unit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: darken($primary-color, 8%);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@use "@/styles/variables" as *;
+
+header {
+    padding: 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-family: 'Intro', sans-serif;
+}
