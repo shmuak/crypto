@@ -1,4 +1,3 @@
-// pricesSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PriceData } from '../../types/asset'; // Импортируем обновленный тип
 
